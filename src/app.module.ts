@@ -10,15 +10,17 @@ import { UserModule } from './features/user/user.module';
 import { DatabaseModule } from './shared/database/database.module';
 import { BusinessModule } from './business/business.module';
 import { StartupService } from './services/startup.service';
+import { CarbonFootprintModule } from './features/carbon-footprint/carbon-footprint.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     BusinessModule,
-    UserModule,
-    RoleModule,
     AuthModule,
+    RoleModule,
+    UserModule,
+    CarbonFootprintModule,
   ],
   controllers: [AppController],
   providers: [

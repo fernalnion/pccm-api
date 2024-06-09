@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { BaseBusiness } from './base.business';
-import { User } from 'src/schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { FilterQuery, Model } from 'mongoose';
+import { User } from 'src/schemas/user.schema';
+import { BaseBusiness } from './base.business';
 
 @Injectable()
 export class UserBusiness extends BaseBusiness<User> {
@@ -11,7 +11,8 @@ export class UserBusiness extends BaseBusiness<User> {
     super(userModel);
   }
 
-  getByEmail = (email: string) => this.collectionModel.findOne({ email });
+  getByEmail = (email: string) =>
+    this.collectionModel.findOne({ email }, {}, { lean: true });
 
   override create = async (payload: User) => {
     const hashedPassword = await bcrypt.hash(payload.password, 10);
@@ -21,4 +22,6 @@ export class UserBusiness extends BaseBusiness<User> {
     });
     return newUser.save();
   };
+  override getAll = (filter?: FilterQuery<any>) =>
+    this.collectionModel.find({ ...(filter ?? {}) }, { password: 0 });
 }

@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { UserBusiness } from 'src/business/user.business';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { CreateUserDto, updateDto } from 'src/models/user.dto';
 import {
   ApiBearerAuth,
   ApiBody,
@@ -18,12 +17,14 @@ import {
   ApiTags,
   getSchemaPath,
 } from '@nestjs/swagger';
+import { CreateUserDto } from 'src/models/create-user.dto';
+import { UpdateUserDto } from 'src/models/update-user.dto';
 
 @ApiTags('User')
 @Controller('user')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@ApiExtraModels(CreateUserDto, updateDto)
+@ApiExtraModels(CreateUserDto, UpdateUserDto)
 export class UserController {
   constructor(private readonly userBusiness: UserBusiness) {}
 
@@ -50,10 +51,10 @@ export class UserController {
   }
 
   @Put(':id')
-  @ApiBody({ schema: { $ref: getSchemaPath(updateDto) } })
+  @ApiBody({ schema: { $ref: getSchemaPath(UpdateUserDto) } })
   async update(
     @Param('id') id: string,
-    @Body() updatePayload: Partial<updateDto>,
+    @Body() updatePayload: Partial<UpdateUserDto>,
   ) {
     await this.userBusiness.updateById(id, updatePayload);
   }

@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IUser } from 'src/interfaces/IUser';
 
-export class updateDto {
+export class UpdateUserDto {
   @ApiProperty({ type: String })
   email: string;
 
@@ -13,9 +12,4 @@ export class updateDto {
 
   @ApiProperty({ type: String })
   role: string | any;
-}
-
-export class CreateUserDto extends updateDto implements IUser {
-  @ApiProperty({ type: String })
-  password: string;
 }
