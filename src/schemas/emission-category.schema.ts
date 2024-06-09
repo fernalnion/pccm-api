@@ -6,7 +6,7 @@ export type EmissonCategoryDocument = HydratedDocument<EmissionCategory>;
 @Schema()
 export class EmissionCategory {
   @Prop({ required: true })
-  categoty: string;
+  category: string;
 
   @Prop({ required: true })
   emissionFactors: number;

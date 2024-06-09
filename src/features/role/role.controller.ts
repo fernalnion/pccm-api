@@ -8,7 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RoleBusiness } from 'src/business/role.business';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { IResponse } from 'src/interfaces/IResponse';
@@ -17,6 +17,7 @@ import { Role } from 'src/schemas/role.schema';
 
 @ApiTags('Role')
 @Controller('role')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 export class RoleController {
   constructor(private readonly roleBusiness: RoleBusiness) {}

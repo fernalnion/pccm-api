@@ -19,6 +19,7 @@ import {
 } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/models/create-user.dto';
 import { UpdateUserDto } from 'src/models/update-user.dto';
+import { ObjectId } from 'mongodb';
 
 @ApiTags('User')
 @Controller('user')
@@ -31,7 +32,10 @@ export class UserController {
   @Post()
   @ApiBody({ schema: { $ref: getSchemaPath(CreateUserDto) } })
   create(@Body() createUserDto: CreateUserDto) {
-    return this.userBusiness.create(createUserDto);
+    return this.userBusiness.create({
+      ...createUserDto,
+      role: new ObjectId(createUserDto.role),
+    });
   }
 
   @Get()

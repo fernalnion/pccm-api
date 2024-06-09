@@ -11,6 +11,8 @@ import { DatabaseModule } from './shared/database/database.module';
 import { BusinessModule } from './business/business.module';
 import { StartupService } from './services/startup.service';
 import { CarbonFootprintModule } from './features/carbon-footprint/carbon-footprint.module';
+import { CarbonCreditModule } from './features/carbon-credit/carbon-credit.module';
+import { EmissionCategoryModule } from './features/emission-category/emission-category.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { CarbonFootprintModule } from './features/carbon-footprint/carbon-footpr
     RoleModule,
     UserModule,
     CarbonFootprintModule,
+    CarbonCreditModule,
+    EmissionCategoryModule,
   ],
   controllers: [AppController],
   providers: [

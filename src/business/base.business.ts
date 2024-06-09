@@ -10,9 +10,9 @@ export class BaseBusiness<T> {
 
   create = (payload: T) => this.collectionModel.create(payload);
   getById = (id: string) =>
-    this.collectionModel.findOne({ _id: new ObjectId(id) });
+    this.collectionModel.findOne({ _id: new ObjectId(id) }, {}, { lean: true });
   getItem = (filter: FilterQuery<any>) =>
-    this.collectionModel.findOne({ ...(filter ?? {}) });
+    this.collectionModel.findOne({ ...(filter ?? {}) }, {}, { lean: true });
   getAll = (filter?: FilterQuery<any>) =>
     this.collectionModel.find({ ...(filter ?? {}) });
   deleteById = (id: string) =>
