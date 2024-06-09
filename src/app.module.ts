@@ -16,9 +16,9 @@ import { StartupService } from './services/startup.service';
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     BusinessModule,
-    AuthModule,
-    RoleModule,
     UserModule,
+    RoleModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
