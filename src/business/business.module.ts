@@ -6,7 +6,10 @@ import { UserBusiness } from './user.business';
 import { User, UserSchema } from 'src/schemas/user.schema';
 import { CarbonFootprintBusiness } from './carbon-footprint.business';
 import { EmissionCategoryBusiness } from './emission-category.business';
-import { CarbonFootprint } from 'src/schemas/carbon-footprint.schema';
+import {
+  CarbonFootprint,
+  CarbonFootprintSchema,
+} from 'src/schemas/carbon-footprint.schema';
 import {
   CarbonCredit,
   CarbonCreditSchema,
@@ -29,7 +32,7 @@ const BUSINESS = [
     MongooseModule.forFeature([{ name: Role.name, schema: RoleSchema }]),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([
-      { name: CarbonFootprint.name, schema: CarbonCreditSchema },
+      { name: CarbonFootprint.name, schema: CarbonFootprintSchema },
     ]),
     MongooseModule.forFeature([
       { name: EmissionCategory.name, schema: EmissionCategorySchema },
